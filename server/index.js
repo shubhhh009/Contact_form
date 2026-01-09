@@ -7,7 +7,11 @@ const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
 
-app.use(cors())
+app.use(cors({
+    origin: "*", // allow all (safe for demo)
+    methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+}))
 app.use(express.json())
 
 app.use('/api/contacts', contactRoutes)
