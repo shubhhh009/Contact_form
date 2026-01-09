@@ -1,0 +1,9 @@
+{
+    "name": "contact-manager-root",
+    "private": true,
+    "workspaces": [
+        "client",
+        "server"
+    ],
+    "scripts": {}
+}
