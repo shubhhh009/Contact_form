@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
 import { getContacts, deleteContact } from "../services/api";
-import axios from "axios";
-
-const res = await getContacts();
-await deleteContact(id);
 
 const ContactList = ({ refresh }) => {
   const [contacts, setContacts] = useState([]);
@@ -12,7 +8,7 @@ const ContactList = ({ refresh }) => {
   const fetchContacts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5001/api/contacts");
+      const res = await getContacts();
       setContacts(res.data);
     } catch (error) {
       console.error(error);
@@ -22,7 +18,7 @@ const ContactList = ({ refresh }) => {
   };
    const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/contacts/${id}`);
+      await deleteContact(id);
       setContacts((prev) => prev.filter((c) => c._id !== id));
     } catch (error) {
       console.error(error);

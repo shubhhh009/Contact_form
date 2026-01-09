@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { createContact } from "../services/api";
-import axios from "axios";
 
-
-await createContact(formData);
 
 const ContactForm = ({ onContactAdded })=>{
     const[ formData , setFormData] = useState({
@@ -13,16 +10,14 @@ const ContactForm = ({ onContactAdded })=>{
         address:""
     });
 
-
 const [errors , setErrors] = useState({})
 const [success , setSuccess] = useState("")
- 
+
 const validate = ()=>{
     const newErrors = {};
 
     if(!formData.name.trim()){
         newErrors.name = "Name is required";
-
     }
 
     if(!formData.email.trim()){
@@ -42,7 +37,6 @@ const handleChange = (e)=>{
     setFormData({...formData , [e.target.name]:e.target.value})
     setErrors({})
     setSuccess("")
-
 };
 
 const handleSubmit = async (e)=>{
@@ -50,7 +44,7 @@ const handleSubmit = async (e)=>{
     
     if(!validate()) return;
     try {
-        await axios.post("http://localhost:5001/api/contacts",formData)
+        await createContact(formData)
          setSuccess("Contact submitted successfully");
          setFormData({
         name: "",

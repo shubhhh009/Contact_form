@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "https://contact-form.vercel.app/api",
+    baseURL: import.meta.env.VITE_API_URL || "/api",
 })
 
 export const createContact = (data) => API.post("/contacts", data);
